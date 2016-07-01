@@ -4,10 +4,13 @@
       to ctrl.setEditedBoard via ng-click – that way, you will
       be able to actually see the editing form when you click on a board.
       -->
-    <div ng-repeat="(id, board) in ctrl.boards" ng-click="ctrl.setEditedBoard(id, board)"
-      class="simple-board">
-      <h3>{{board.title}} (#{{id}})</h3>
+    <div
+      class="simple-board"
+      ng-repeat="(boardId, board) in ctrl.boards"
+      ng-click="ctrl.setEditedBoard(boardId, board)">
+      <h3>{{board.title}} (#{{boardId}})</h3>
       <p>{{board.description}}</p>
+      <input type="checkbox" ng-model="board.isPublic"> Is Public?
       <p ng-click="ctrl.deleteBoard(id)">Delete board</p>
     </div>
 
@@ -19,10 +22,10 @@
     <h3>Create a New Board</h3>
     <hr/>
     <form
-      ng-submit="ctrl.createBoard(ctrl.newBoard, ctrl.createForm.$valid)"
       name="ctrl.createForm"
       class="create-form"
       role="form"
+      ng-submit="ctrl.createBoard(ctrl.newBoard, ctrl.createForm.$valid)"
       novalidate>
 
       <div class="from-group">
@@ -35,17 +38,20 @@
         <input class="form-control" type="text" ng-model="ctrl.newBoard.description">
       </div>
 
-      <button class="btn btn-success" type="submit">Submit</button>
+      <input type="checkbox" ng-model="ctrl.newBoard.isPublic"> Is Public?
+
+      <button class="btn btn-success" type="submit">Create</button>
     </form>
   </div>
   <!-- EDITING -->
   <div ng-if="ctrl.isEditing" class="col-xs-12 board-details">
     <h3>Editing {{ ctrl.editedBoard.title }}</h3>
     <hr/>
-    <form ng-submit="ctrl.updateBoard(ctrl.editedBoardId, ctrl.editedBoard, ctrl.updateForm.$valid)"
+    <form
       name="ctrl.updateForm"
       class="edit-form"
       role="form"
+      ng-submit="ctrl.updateBoard(ctrl.editedBoardId, ctrl.editedBoard, ctrl.updateForm.$valid)"
       novalidate>
 
       <div class="from-group">
@@ -58,8 +64,10 @@
         <input class="form-control" type="text" ng-model="ctrl.editedBoard.description">
       </div>
 
-      <button class="btn btn-success" type="submit">Submit</button>
+      <input type="checkbox" ng-model="ctrl.editedBoard.isPublic"> Is Public?
 
+      <button class="btn btn-success" type="submit">Submit</button>
+      <button class="btn btn-default" ng-click="cancelEditing()">Cancel</button>
     </form>
   </div>
 </div>
