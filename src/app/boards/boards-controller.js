@@ -22,7 +22,17 @@ angular.module('noterious')
     };
 
     ctrl.getBoards = function () {
-      ctrl.boards = BoardsModel.all();
+      BoardsModel.all()
+        .then(function(boards) {
+          console.log("Successfully retrieved all boards");
+          ctrl.boards = boards;
+        })
+        .catch(function(error) {
+          console.log("Error retrieving all boards");
+        })
+        .finally(function() {
+          console.log("Finished getBoards()");
+        });
     };
 
     ctrl.createBoard = function (board, isValid) {

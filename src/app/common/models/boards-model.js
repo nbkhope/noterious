@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('noterious.common')
-  .service('BoardsModel', function ($http, UserModel, ENDPOINT_URI) {
+  .service('BoardsModel', function ($http, $q, UserModel, ENDPOINT_URI) {
     var service = this;
 
     service.all = function() {
-      return {
+      var deferred = $q.defer();
+
+      deferred.resolve({
         1: {
           description: "Anything and everything!",
           isPublic: true,
@@ -21,11 +23,13 @@ angular.module('noterious.common')
           isPublic: false,
           title: "testing"
         }
-      };
+      });
+
+      return deferred.promise;
     };
 
     service.fetch = function(boardId) {
-      
+
     };
 
     service.create = function(board) {
