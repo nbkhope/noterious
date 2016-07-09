@@ -33,7 +33,12 @@ angular.module('noterious')
       //   .finally(function() {
       //     console.log("Finished getBoards()");
       //   });
-      ctrl.boards = BoardsModel.all();
+      BoardsModel.all()
+        .then(function(result) {
+          ctrl.boards = result;
+        }, function() {
+          ctrl.resetForm();
+        });
     };
 
     ctrl.createBoard = function (board, isValid) {

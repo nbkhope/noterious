@@ -30,7 +30,7 @@ angular.module('noterious.common')
       // });
       //
       // return deferred.promise;
-      return $http.get(ENDPOINT_URI + "/users" + UserModel.getCurrentUser() + "/boards.json").then(extract);
+      return $http.get(ENDPOINT_URI + "users/" + UserModel.getCurrentUser() + "/boards.json").then(extract);
     };
 
     service.fetch = function(boardId) {
