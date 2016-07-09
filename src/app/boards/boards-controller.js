@@ -22,23 +22,7 @@ angular.module('noterious')
     };
 
     ctrl.getBoards = function () {
-      ctrl.boards = {
-        1: {
-          description: "Anything and everything!",
-          isPublic: true,
-          title: "Random Ideas"
-        },
-        2: {
-          description: "BizDev Ideas",
-          isPublic: false,
-          title: "Hustle"
-        },
-        3: {
-          description: "this is a test",
-          isPublic: false,
-          title: "testing"
-        }
-      };
+      ctrl.boards = BoardsModel.all();
     };
 
     ctrl.createBoard = function (board, isValid) {
