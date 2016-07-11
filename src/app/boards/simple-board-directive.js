@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('noterious')
-  .directive('board', function() {
+  .directive('simpleBoard', function() {
     var linker = function(scope, element, attrs) {
       $(element).hover(
         function() {
@@ -14,7 +14,7 @@ angular.module('noterious')
 
     return {
       link: linker,
-      templateUrl: "app/boards/board.tmpl.html",
+      templateUrl: "app/boards/simple-board.tmpl.html",
     };
   })
   ;
