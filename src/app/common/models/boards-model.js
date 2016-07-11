@@ -9,6 +9,7 @@ angular.module('noterious.common')
     }
 
     function getUrl() {
+      console.log(UserModel.getCurrentUser());
       return ENDPOINT_URI + 'users/' + UserModel.getCurrentUser() + '/boards.json';
     }
 
